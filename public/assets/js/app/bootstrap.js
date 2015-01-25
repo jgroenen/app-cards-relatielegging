@@ -30,7 +30,7 @@ require([
         'Views/Application'
     ], function (ApplicationView) {
         new ApplicationView({
-            el: $('body')
+            el: $('#cards-relational')
         });
     });
 
