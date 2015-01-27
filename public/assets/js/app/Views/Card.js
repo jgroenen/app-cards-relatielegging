@@ -12,7 +12,8 @@ define([
             "click": "handleClick"
         },
 
-        initialize: function () {
+        initialize: function (options) {
+            this.application = options.application;
             this.render();
         },
         
@@ -22,7 +23,7 @@ define([
         },
         
         handleClick: function () {
-            this.moveTo(0, 100); //FIXME
+            this.application.selectCard(this);
         },
         
         moveTo: function (x, y) {

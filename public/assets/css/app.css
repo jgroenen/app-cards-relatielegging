@@ -1,3 +1,27 @@
+#cards-relational #cards {
+    clear: left;
+    height: 280px;
+}
+
+#cards-relational #selected-cards {
+    clear: left;
+    height: 280px;
+}
+
+#cards-relational .slot {
+    position: absolute;
+    height: 200px;
+    width: 128px;
+    border-radius: 10px;
+    border: 6px solid gray;
+    background: gray;
+    margin: 20px;
+}
+
+#cards-relational #selected-cards-explanation {
+    clear: left;
+}
+
 #cards-relational .card {
     position: absolute;
     height: 200px;

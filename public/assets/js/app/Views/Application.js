@@ -9,12 +9,13 @@ define([
         initialize: function () {
             var application = this;
             this.cards = new Backbone.Collection(settings.cards);
-            this.cardViews = [];
             this.cards.forEach(function (card) {
                 card.view = new CardView({
-                    model: card
+                    model: card,
+                    application: application
                 });
             });
+            this.selectedCards = [];
             this.render();
         },
         
@@ -26,6 +27,18 @@ define([
                 application.$("#cards").append(card.view.$el);
             });
             return this;
+        },
+        
+        selectCard: function (card) {
+            var index = this.selectedCards.length;
+            if (index >= 3) {
+                return;
+            }
+            this.selectedCards.push(card);
+            var slot = $(".slot")[index];
+            var top = $(slot).offset().top;
+            var left = $(slot).offset().left;
+            card.animateTo(left, top);
         }
     });
 });
