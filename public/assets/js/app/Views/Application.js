@@ -9,6 +9,7 @@ define([
         initialize: function () {
             var application = this;
             this.cards = new Backbone.Collection(settings.cards);
+            this.cards.reset(this.cards.shuffle(), {silent:true});
             this.cards.forEach(function (card) {
                 card.view = new CardView({
                     model: card,
@@ -20,25 +21,28 @@ define([
         },
         
         render: function () {
-            var application = this;
+            var application = this,
+                $cardsSection,
+                space;
             this.$el.html(this.template(this));
+            space = Math.floor((this.$el.width() - 134) / 35);
+            $cardsSection = application.$("#cards");
             this.cards.forEach(function (card, i) {
-                card.view.moveTo(20 * i, 0);
-                application.$("#cards").append(card.view.$el);
+                card.view.animateTo(space * i, 0, 1000);
+                $cardsSection.append(card.view.$el);
             });
             return this;
         },
         
         selectCard: function (card) {
-            var index = this.selectedCards.length;
-            if (index >= 3) {
+            if (this.selectedCards.length >= 3) {
                 return;
             }
             this.selectedCards.push(card);
-            var slot = $(".slot")[index];
-            var top = $(slot).offset().top;
-            var left = $(slot).offset().left;
-            card.animateTo(left, top);
+            var $slot = $($(".slot")[this.selectedCards.length - 1]);
+            var top = card.$el.position().top + ($slot.offset().top - card.$el.offset().top);
+            var left = card.$el.position().left + ($slot.offset().left - card.$el.offset().left);
+            card.animateTo(left, top, 200, $slot);
         }
     });
 });

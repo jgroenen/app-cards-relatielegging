@@ -1,9 +1,11 @@
 define([
     'settings',
-    'text!templates/card.tmpl'
-], function (settings, template) {
+    'text!templates/card.tmpl',
+    'text!templates/explanation.tmpl'
+], function (settings, template, explanationTemplate) {
     return Backbone.View.extend({
         template: _.template(template),
+        explanationTemplate: _.template(explanationTemplate),
         
         tagName: "section",
         className: "card",
@@ -33,11 +35,22 @@ define([
             });
         },
         
-        animateTo: function (x, y, t) {
+        animateTo: function (x, y, t, $slot) {
+            var cardView = this;
             this.$el.animate({
                 top: y,
                 left: x
-            }, t);
+            }, t, function () {
+                if ($slot) {
+                    $slot.append(cardView.$el);
+                    cardView.$el.css({
+                        top: 0,
+                        left: 0,
+                        backgroundImage: "url(assets/img/cards/" + cardView.model.get("id") + ".jpg)"
+                    });
+                    $("#explanations").append(cardView.explanationTemplate(this));
+                }
+            });
         }
     });
 });

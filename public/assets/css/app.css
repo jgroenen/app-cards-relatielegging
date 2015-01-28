@@ -1,25 +1,32 @@
-#cards-relational #cards {
-    clear: left;
-    height: 280px;
+body {
+    background: #ece4ca;
+    font-size: 100%;
 }
 
-#cards-relational #selected-cards {
-    clear: left;
-    height: 280px;
+#cards-relational {
+    width: 840px;
+    margin: 0 auto;
 }
 
-#cards-relational .slot {
-    position: absolute;
-    height: 200px;
-    width: 128px;
-    border-radius: 10px;
-    border: 6px solid gray;
-    background: gray;
-    margin: 20px;
+#cards-relational h1,
+#cards-relational h2 {
+    color: #333;
+    font-family: 'Spirax', cursive;
+    text-align: center;
+    -webkit-font-smoothing: subpixel-antialiased !important;
+    text-rendering: optimizelegibility;
+    font-weight: bold;
 }
 
-#cards-relational #selected-cards-explanation {
-    clear: left;
+#cards-relational h1 {
+    
+    font-size: 2.4em;
+    line-height: 3em;
+}
+
+#cards-relational h2 {
+    font-size: 1.4em;
+    line-height: 2em;
 }
 
 #cards-relational .card {
@@ -29,7 +36,67 @@
     border-radius: 10px;
     border: 6px solid white;
     box-shadow: 2px 2px 12px #333;
-    float: left;
-    margin: 20px;
     background: #333 url(../img/logo_letters.png) center center no-repeat;
+}
+
+#cards-relational #cards {
+    clear: left;
+    height: 280px;
+    position: relative;
+}
+
+#cards-relational #cards .card {
+    cursor: pointer;
+}
+
+#cards-relational #slots {
+    height: 280px;
+    text-align: center;
+}
+
+#cards-relational #slots .slot {
+    position: relative;
+    display: inline-block;
+    height: 212px;
+    width: 140px;
+    border-radius: 10px;
+    background: #ccc;
+    box-shadow: 2px 2px 12px #ccc;
+    margin: 0 50px;
+    z-index: -1;
+}
+
+#cards-relational #slots .slot .card {
+    top: 0;
+    left: 0;
+    background-size: 128px 200px;
+}
+
+#cards-relational #slots .slot h2 {
+    margin-top: 220px;
+}
+
+#cards-relational #explanations {
+}
+
+#cards-relational #explanations .explanation {
+    background: #fff;
+    padding: 40px;
+}
+
+#cards-relational #explanations .explanation img {
+    float: right;
+    margin: 40px;
+}
+
+#cards-relational #explanations .explanation p {
+    line-height: 1.4em;
+    margin-bottom: 20px;
+    font-family: 'Exo 2', sans-serif;
+    color: #333;
+    font-size: 0.8em;
+}
+
+#cards-relational .clear {
+    clear: both;
 }
